@@ -18,7 +18,7 @@ let activeIndex = -1;
 let debounceTimer = null;
 let reqSeq = 0;            // guards against out-of-order /suggest responses
 let searchSeq = 0;        // guards against out-of-order /search responses
-const DEBOUNCE_MS = 140;
+const DEBOUNCE_MS = 250;   // wait this long after the last keystroke before querying
 
 // ---- helpers ----
 function setStatus(msg, isError = false) {
@@ -264,7 +264,10 @@ document.addEventListener("click", (e) => {
 });
 
 // ---- init ----
+// Load the panels once on startup. We deliberately do NOT poll on a timer:
+// trending only changes when a search is submitted (which refreshes the panels,
+// see submitSearch), and the manual ↻ buttons cover on-demand refresh. This
+// keeps the network quiet — no background requests when the user is idle.
 loadTrending();
 loadMetrics();
-setInterval(() => { loadMetrics(); loadTrending(); }, 5000);  // keep the live panels fresh
 input.focus();
