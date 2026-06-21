@@ -54,10 +54,14 @@
         </div>
 
         <div class="request-strip" id="request-strip" aria-live="polite">
-          <span class="chip" id="chip-cache">cache —</span>
-          <span class="chip" id="chip-node">node —</span>
-          <span class="chip" id="chip-latency">latency —</span>
-          <span class="chip" id="chip-count">results —</span>
+          <span class="chip" id="chip-cache"
+            title="Suggestion cache (consistent-hash routed). HIT = served from cache; MISS = recomputed from the trie and cached. A cached prefix is invalidated when a matching query is searched (so the new count shows up), or after the 30s TTL — so re-typing a query you just searched is expected to MISS.">cache —</span>
+          <span class="chip" id="chip-node"
+            title="Which logical cache node owns this prefix, chosen by the consistent-hash ring. See GET /cache/debug.">node —</span>
+          <span class="chip" id="chip-latency"
+            title="Server-side time to build this /suggest response (cache lookup → trie → rank).">latency —</span>
+          <span class="chip" id="chip-count"
+            title="Number of suggestions returned for this prefix (≤ the requested limit).">results —</span>
         </div>
 
         <div class="result-card" id="result-card" hidden>
