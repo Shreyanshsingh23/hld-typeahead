@@ -304,6 +304,10 @@ This prints labelled logs demonstrating all three graded behaviours — handy fo
 the viva and as submission evidence. (`scripts/benchmark.py` does the same for
 latency/hit-rate/write-reduction against the live server.)
 
+A consolidated **PDF report** (architecture, dataset, API, design choices &
+trade-offs, performance) is at [`Project_Report.pdf`](Project_Report.pdf);
+rebuild it with `python -m scripts.build_report`.
+
 ---
 
 ## Performance (summary)
